@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="I. Use. This. — the expert, the practice, the object — iusethis.org">
+  <style>
+    .coin-rim  { fill: #8c6d1f; }
+    .coin-face { fill: #c9a227; }
+    .coin-i    { fill: #2a1d12; }
+    .w-i    { fill: #a67c1f; }
+    .w-use  { fill: #175a43; }
+    .w-this { fill: #5c3a24; }
+    .sub    { fill: #6e6350; }
+    .org    { fill: #6e6350; }
+    text { font-family: Fraunces, Georgia, "Times New Roman", serif; }
+    .sub-t, .org-t { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+    @media (prefers-color-scheme: dark) {
+      .w-i    { fill: #d4af37; }
+      .w-use  { fill: #6fc79e; }
+      .w-this { fill: #c08a5f; }
+      .sub, .org { fill: #a69a80; }
+    }
+  </style>
+
+  <!-- The mark: a struck gold coin bearing the I — the letter circled
+       like a copyright symbol, because the "I" is what's claimed. -->
+  <circle class="coin-rim"  cx="110" cy="110" r="86"/>
+  <circle class="coin-face" cx="110" cy="110" r="78"/>
+  <circle fill="none" stroke="#8c6d1f" stroke-width="3" stroke-dasharray="2 6" cx="110" cy="110" r="68"/>
+  <text class="coin-i" x="110" y="152" text-anchor="middle" font-size="118" font-weight="700">I</text>
+
+  <!-- The wordmark: I. Use. This. — established, operated, catalogued -->
+  <text x="228" y="118" font-size="72" font-weight="700" letter-spacing="1">
+    <tspan class="w-i">I.</tspan><tspan class="w-use" dx="18">Use.</tspan><tspan class="w-this" dx="18">This.</tspan>
+  </text>
+
+  <!-- The subtitle: the claim, broken out -->
+  <text class="sub sub-t" x="230" y="156" font-size="17" letter-spacing="2.5">THE EXPERT&#8201;&#183;&#8201;THE PRACTICE&#8201;&#183;&#8201;THE OBJECT</text>
+
+  <text class="org org-t" x="230" y="190" font-size="14" letter-spacing="1.5">&#169; iusethis.org</text>
+</svg>

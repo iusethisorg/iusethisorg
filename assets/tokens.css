@@ -1,0 +1,137 @@
+/* ============================================================
+   iusethis.org — site-wide color system ("the Vault tokens")
+   Four complementing palettes, each with a light and dark theme.
+   Derived from the trust colors of an opulent old bank:
+   deep green, burnished gold, dark mahogany, veined marble.
+
+   Usage:
+     <html data-palette="marble|vault|coin|teller">
+   Theme resolves from the viewer's OS unless forced with
+     <html data-theme="light|dark">
+   Style components ONLY through these tokens.
+   ============================================================ */
+
+/* ---------- MARBLE (default: the reading palette) ---------- */
+:root {
+  --bg:        #f6f1e5;  /* marble ivory */
+  --surface:   #fdfaf2;  /* polished counter */
+  --ink:       #2b2416;  /* ledger ink */
+  --ink-muted: #6e6350;
+  --rule:      #d9cfb8;  /* veining */
+  --accent:    #175a43;  /* banker's green */
+  --gold:      #a67c1f;  /* burnished detail */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Newsreader", Georgia, serif;
+  --font-data:    "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+/* ---------- VAULT (green-led: chrome, covers, navigation) -- */
+:root[data-palette="vault"] {
+  --bg:        #edf3ee;
+  --surface:   #f8fbf7;
+  --ink:       #14291f;
+  --ink-muted: #52685b;
+  --rule:      #c4d4c6;
+  --accent:    #0f4d38;  /* vault-door green */
+  --gold:      #b08d2a;
+}
+
+/* ---------- COIN (gold-led: celebration, features) --------- */
+:root[data-palette="coin"] {
+  --bg:        #f7efd8;
+  --surface:   #fcf7e8;
+  --ink:       #33260c;
+  --ink-muted: #7a6a42;
+  --rule:      #e0d2a6;
+  --accent:    #8c6d1f;  /* struck gold */
+  --gold:      #c9a227;
+}
+
+/* ---------- TELLER (mahogany-led: archive, history) -------- */
+:root[data-palette="teller"] {
+  --bg:        #f2eae2;
+  --surface:   #faf5ef;
+  --ink:       #2a1d12;
+  --ink-muted: #77604e;
+  --rule:      #d8c9ba;
+  --accent:    #5c3a24;  /* counter mahogany */
+  --gold:      #b08d2a;
+}
+
+/* ============ DARK THEMES (system preference) ============== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #201b12;
+    --surface:   #2a2418;
+    --ink:       #ede4d0;
+    --ink-muted: #a69a80;
+    --rule:      #4a4130;
+    --accent:    #4fa47e;
+    --gold:      #d4af37;
+  }
+  :root:not([data-theme="light"])[data-palette="vault"] {
+    --bg:        #0c1f18;
+    --surface:   #143026;
+    --ink:       #ddebdf;
+    --ink-muted: #8faf9c;
+    --rule:      #2c4a3c;
+    --accent:    #6fc79e;
+    --gold:      #d9b84a;
+  }
+  :root:not([data-theme="light"])[data-palette="coin"] {
+    --bg:        #241c09;
+    --surface:   #31280f;
+    --ink:       #f0e5c4;
+    --ink-muted: #a89663;
+    --rule:      #4e421c;
+    --accent:    #e0be4e;
+    --gold:      #c9a227;
+  }
+  :root:not([data-theme="light"])[data-palette="teller"] {
+    --bg:        #1d130c;
+    --surface:   #291b11;
+    --ink:       #ebdfd3;
+    --ink-muted: #a08a76;
+    --rule:      #46362a;
+    --accent:    #c08a5f;
+    --gold:      #d4af37;
+  }
+}
+
+/* ============ DARK THEMES (explicit toggle) ================ */
+:root[data-theme="dark"] {
+  --bg:        #201b12;
+  --surface:   #2a2418;
+  --ink:       #ede4d0;
+  --ink-muted: #a69a80;
+  --rule:      #4a4130;
+  --accent:    #4fa47e;
+  --gold:      #d4af37;
+}
+:root[data-theme="dark"][data-palette="vault"] {
+  --bg:        #0c1f18;
+  --surface:   #143026;
+  --ink:       #ddebdf;
+  --ink-muted: #8faf9c;
+  --rule:      #2c4a3c;
+  --accent:    #6fc79e;
+  --gold:      #d9b84a;
+}
+:root[data-theme="dark"][data-palette="coin"] {
+  --bg:        #241c09;
+  --surface:   #31280f;
+  --ink:       #f0e5c4;
+  --ink-muted: #a89663;
+  --rule:      #4e421c;
+  --accent:    #e0be4e;
+  --gold:      #c9a227;
+}
+:root[data-theme="dark"][data-palette="teller"] {
+  --bg:        #1d130c;
+  --surface:   #291b11;
+  --ink:       #ebdfd3;
+  --ink-muted: #a08a76;
+  --rule:      #46362a;
+  --accent:    #c08a5f;
+  --gold:      #d4af37;
+}

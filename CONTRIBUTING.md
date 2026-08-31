@@ -35,8 +35,14 @@ whole stack that hangs together.
    stack, the angle, and who might write it (yourself included).
 2. Anyone may claim it by commenting `claiming` — first claim wins; a claim
    goes stale after 30 days of no draft.
-3. Draft as a markdown PR into `writeups/` (kebab-case filename, front
-   matter: `title`, `author`, `date`, `tools`).
+3. Draft as a PR into `writeups/` (kebab-case filename, front matter:
+   `title`, `author`, `date`, `tools`), following the **ledger format**:
+   a love story of an object, not a review — five images separating the
+   sections (Meeting, Practice, Expertise, Care), a required Register data
+   block (in use since, hours logged, hours to fluency, expected remaining
+   life, provenance, care ritual), and an appendix with what the object
+   makes. Copy `article.html` as the starting point; the format and its
+   rationale are specified in `docs/proposals/001-editorial-identity.md`.
 4. Review = one approval from any maintainer plus the 72-hour lazy-consensus
    window. Reviewers edit for clarity, never for opinion — a write-up is the
    author's experience.
