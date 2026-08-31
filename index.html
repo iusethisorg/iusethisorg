@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iusethis.org — project register</title>
+<meta name="description" content="A continuous-form register of software Paul Richeson actually uses and maintains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── tokens ─────────────────────────────────────────────── */
+  :root {
+    --paper:      #f5f8f3;  /* fanfold stock */
+    --band:       #e4efe1;  /* greenbar stripe */
+    --ink:        #263229;  /* ribbon ink */
+    --ink-faint:  #6d7d70;  /* worn ribbon */
+    --rule:       #b9ccb8;  /* perforation lines */
+    --stamp:      #a33327;  /* red inspection stamp */
+    --link:       #1c5e8f;  /* ballpoint annotation blue */
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --line: 1.55rem;        /* printer line pitch */
+  }
+
+  * { box-sizing: border-box; }
+
+  html { color-scheme: light; }
+
+  body {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    line-height: var(--line);
+    color: var(--ink);
+    background-color: var(--paper);
+    /* greenbar: 3 lines white, 3 lines green, like real 14⅞″ stock */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--paper) 0,               var(--paper) calc(var(--line) * 3),
+      var(--band)  calc(var(--line) * 3), var(--band) calc(var(--line) * 6)
+    );
+  }
+
+  /* ── sprocket-hole tractor strips ───────────────────────── */
+  .tractor {
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 2.25rem;
+    background-image: radial-gradient(circle at 50% 50%, var(--paper) 0.28rem, rgba(38,50,41,0.28) 0.34rem, transparent 0.42rem);
+    background-size: 100% 1.5rem;
+    border-color: var(--rule);
+    z-index: 1;
+  }
+  .tractor.left  { left: 0;  border-right: 1px dashed var(--rule); }
+  .tractor.right { right: 0; border-left:  1px dashed var(--rule); }
+
+  /* ── page column ────────────────────────────────────────── */
+  .sheet {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: calc(var(--line) * 2) 3.5rem calc(var(--line) * 4);
+  }
+
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--stamp);
+    outline-offset: 2px;
+  }
+
+  /* ── burst page (hero) ──────────────────────────────────── */
+  header { margin-bottom: calc(var(--line) * 2); }
+
+  .jobline {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 8vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: calc(var(--line) * 1.5) 0 var(--line);
+  }
+  h1 .dim { color: var(--ink-faint); font-weight: 400; }
+
+  .intro { max-width: 34rem; margin: 0 0 var(--line); }
+
+  /* ── register (project list) ────────────────────────────── */
+  .register { list-style: none; margin: 0; padding: 0; }
+
+  .rec {
+    border-top: 1px dashed var(--rule);
+    padding: var(--line) 0;
+  }
+  .rec:last-child { border-bottom: 1px dashed var(--rule); }
+
+  .rec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .rec-id {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+  }
+  .rec-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .rec-name a { color: inherit; }
+
+  .stamp {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    border: 1.5px solid var(--stamp);
+    border-radius: 2px;
+    padding: 0.05rem 0.45rem;
+    transform: rotate(-2deg);
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .stamp.dormant { color: var(--ink-faint); border-color: var(--ink-faint); }
+
+  .rec-desc { margin: 0.35rem 0 0; max-width: 36rem; }
+
+  .rec-meta {
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+  .rec-meta em { font-style: normal; color: var(--ink); }
+
+  /* line-printer reveal */
+  @media (prefers-reduced-motion: no-preference) {
+    .rec { animation: feed 0.35s ease-out backwards; }
+    .rec:nth-child(1) { animation-delay: 0.10s; }
+    .rec:nth-child(2) { animation-delay: 0.22s; }
+    .rec:nth-child(3) { animation-delay: 0.34s; }
+    .rec:nth-child(4) { animation-delay: 0.46s; }
+    .rec:nth-child(5) { animation-delay: 0.58s; }
+    .rec:nth-child(n+6) { animation-delay: 0.70s; }
+    @keyframes feed {
+      from { opacity: 0; transform: translateY(0.4rem); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+
+  /* ── footer ─────────────────────────────────────────────── */
+  footer {
+    margin-top: calc(var(--line) * 2);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    border-top: 1px dashed var(--rule);
+    padding-top: var(--line);
+  }
+
+  @media (max-width: 40rem) {
+    .tractor { display: none; }
+    .sheet { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .stamp { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="tractor left" aria-hidden="true"></div>
+<div class="tractor right" aria-hidden="true"></div>
+
+<div class="sheet">
+  <header>
+    <div class="jobline">
+      <span>job: project-register</span>
+      <span>user: paulr@sdf.org</span>
+      <span>form: greenbar</span>
+    </div>
+    <h1>i use this<span class="dim">.</span></h1>
+    <p class="intro">
+      A register of software I actually run — built, maintained, and in daily
+      rotation. No showcases, no vaporware: if it's printed here, it's in use.
+    </p>
+  </header>
+
+  <main>
+    <ol class="register" id="register">
+      <noscript>
+        <li class="rec">
+          <p class="rec-desc">This register renders from <code>projects.js</code> and needs JavaScript. The source is at the repository linked below.</p>
+        </li>
+      </noscript>
+    </ol>
+  </main>
+
+  <footer>
+    <p>iusethis.org · © 2026 Paul Richeson · MIT License ·
+       <a href="mailto:paulr@sdf.org">paulr@sdf.org</a> ·
+       end of listing ␄</p>
+  </footer>
+</div>
+
+<script src="projects.js"></script>
+<script>
+  // Render the register from the PROJECTS array (see projects.js).
+  (function () {
+    const list = document.getElementById("register");
+    const esc = (s) => String(s).replace(/[&<>"']/g,
+      (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+    (window.PROJECTS || []).forEach((p, i) => {
+      const li = document.createElement("li");
+      li.className = "rec";
+      const id = "rec " + String(i + 1).padStart(3, "0");
+      const name = p.url
+        ? `<a href="${esc(p.url)}">${esc(p.name)}</a>`
+        : esc(p.name);
+      const status = (p.status || "in use").toLowerCase();
+      const stampClass = status === "in use" ? "stamp" : "stamp dormant";
+      const meta = [
+        p.since ? `since <em>${esc(p.since)}</em>` : null,
+        p.lang ? `lang <em>${esc(p.lang)}</em>` : null,
+        p.tags && p.tags.length ? esc(p.tags.join(" · ")) : null,
+      ].filter(Boolean).join(" &nbsp;|&nbsp; ");
+
+      li.innerHTML = `
+        <div class="rec-head">
+          <span class="rec-id">${id}</span>
+          <h2 class="rec-name">${name}</h2>
+          <span class="${stampClass}">${esc(status)}</span>
+        </div>
+        <p class="rec-desc">${esc(p.desc || "")}</p>
+        ${meta ? `<p class="rec-meta">${meta}</p>` : ""}`;
+      list.appendChild(li);
+    });
+  })();
+</script>
+
+</body>
+</html>
