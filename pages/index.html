@@ -1,0 +1,192 @@
+---
+title: A historical archive of use
+palette: vault
+desc: Love stories of an expert and the tools — records, write-ups, and the organization that keeps them.
+---
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: var(--font-body); font-size: 1.02rem; line-height: 1.6; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .wrap { max-width: 52rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  /* hero */
+  .hero { padding: 3rem 0 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .hero img { height: 7.5rem; width: auto; flex: none; }
+  .hero-copy { flex: 1 1 22rem; }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.05;
+    margin: 0 0 0.6rem; letter-spacing: -0.015em; text-wrap: balance;
+  }
+  .hero .claim {
+    font-family: var(--font-data); font-size: 0.74rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin: 0 0 0.75rem;
+  }
+  .hero p.lede {
+    font-family: var(--font-display); font-style: italic;
+    font-size: 1.2rem; line-height: 1.45; color: var(--ink-muted);
+    max-width: 34rem; margin: 0;
+  }
+
+  h2.rail {
+    font-family: var(--font-data); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    border-top: 1px solid var(--rule); padding-top: 1.4rem; margin: 2.4rem 0 1rem;
+    display: flex; justify-content: space-between; gap: 1rem;
+  }
+  h2.rail .hint { color: var(--ink-muted); font-weight: 400; }
+
+  /* the ledger: horizontal gallery */
+  .strip {
+    display: flex; gap: 1rem; overflow-x: auto;
+    scroll-snap-type: x proximity; padding-bottom: 0.75rem;
+  }
+  .loader { color: var(--ink-muted); font-family: var(--font-data); font-size: 0.82rem; }
+  .card {
+    flex: 0 0 17.5rem; scroll-snap-align: start;
+    background: var(--surface); border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold); border-radius: 2px;
+    padding: 0.95rem 1.05rem; display: flex; flex-direction: column; gap: 0.45rem;
+  }
+  .badge {
+    align-self: flex-start; font-family: var(--font-data); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1.5px solid var(--accent); color: var(--accent);
+    border-radius: 2px; padding: 0.05rem 0.4rem;
+  }
+  .badge.soon { border-color: var(--ink-muted); color: var(--ink-muted); }
+  .card h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 600; margin: 0; line-height: 1.3; }
+  .card h3 a { color: inherit; }
+  .card p { font-size: 0.82rem; line-height: 1.3rem; margin: 0; color: var(--ink-muted); }
+  .card .meta { font-family: var(--font-data); font-size: 0.66rem; letter-spacing: 0.06em; margin-top: auto; }
+  @media (prefers-reduced-motion: no-preference) {
+    .card { animation: settle 0.35s ease-out backwards; }
+    @keyframes settle { from { opacity: 0; transform: translateY(0.35rem); } to { opacity: 1; transform: none; } }
+  }
+
+  /* the register */
+  .register { list-style: none; margin: 0; padding: 0; }
+  .rec {
+    display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+    border-bottom: 1px dashed var(--rule); padding: 0.7rem 0;
+  }
+  .rec-id { font-family: var(--font-data); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--ink-muted); }
+  .rec-name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin: 0; }
+  .rec-name a { color: inherit; }
+  .rec-desc { flex: 1 1 100%; font-size: 0.9rem; color: var(--ink-muted); margin: 0; max-width: 40rem; }
+  .rec .badge { margin-left: auto; }
+
+  /* documents shelf */
+  .shelf { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+  .doc {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 2px;
+    padding: 0.95rem 1.05rem; text-decoration: none; color: var(--ink);
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .doc:hover { border-color: var(--accent); }
+  .doc .k { font-family: var(--font-data); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .doc h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin: 0; }
+  .doc p { font-size: 0.82rem; line-height: 1.3rem; color: var(--ink-muted); margin: 0; }
+
+  footer {
+    margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1.1rem;
+    font-family: var(--font-data); font-size: 0.72rem; letter-spacing: 0.05em;
+    color: var(--ink-muted); line-height: 1.7;
+  }
+  @media (max-width: 40rem) { .hero { gap: 1.25rem; } .hero img { height: 5.5rem; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <img src="assets/logo.svg" alt="The iusethis seal and wordmark: I. Use. This., the T of This a downward arrow">
+    <div class="hero-copy">
+      <p class="claim">The expert · the practice · the object ↓</p>
+      <h1>A historical archive of use.</h1>
+      <p class="lede">An entry is a love story, a historical tale, of an
+        expert and the tools. Not surveys of train gauges — one man and his
+        trainset, the hours logged, the care rituals, the recipe at the end.</p>
+    </div>
+  </header>
+
+  <h2 class="rail"><span>The Ledger — write-ups</span><span class="hint">scroll →</span></h2>
+  <div class="strip" id="strip"><p class="loader" id="loader">printing the ledger…</p></div>
+
+  <h2 class="rail"><span>The Register — things in use</span>
+    <span class="hint"><a href="https://github.com/iusethisorg/iusethisorg/blob/main/CONTRIBUTING.md">add yours</a></span></h2>
+  <ol class="register" id="register"></ol>
+
+  <h2 class="rail"><span>The Organization</span></h2>
+  <div class="shelf">
+    <a class="doc" href="charter.html">
+      <span class="k">governance</span><h3>The Charter</h3>
+      <p>DAO-in-spirit on GitHub controls: titles, votes, onboarding, the
+         handoff written on day one. Ballot 1 is open.</p></a>
+    <a class="doc" href="identity.html">
+      <span class="k">proposal 001</span><h3>The Identity</h3>
+      <p>The claim, the marks, the ledger article format, and the four
+         bank palettes in light and dark.</p></a>
+    <a class="doc" href="blueprint.html">
+      <span class="k">founding document</span><h3>The Blueprint</h3>
+      <p>The original org brainstorm: three lanes, four self-organizing
+         mechanisms, the tools, the growth path.</p></a>
+    <a class="doc" href="setup.html">
+      <span class="k">fork this</span><h3>Fork &amp; DNS Setup</h3>
+      <p>Run your own register: the full procedure, from fork to custom
+         domain — MIT, encouraged, documented.</p></a>
+  </div>
+
+  <footer>
+    <p>iusethis.org · © 2026 Paul Richeson · code MIT —
+      <a href="https://github.com/iusethisorg/iusethisorg/fork">fork freely</a> ·
+      write-ups © their authors ·
+      <a href="mailto:paulr@sdf.org">paulr@sdf.org</a> · end of listing ␄</p>
+  </footer>
+</div>
+
+<script src="projects.js"></script>
+<script src="articles.js"></script>
+<script>
+  (function () {
+    const esc = (s) => String(s).replace(/[&<>"']/g,
+      (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+    // The Ledger: gallery of write-ups from articles.js (make build)
+    const strip = document.getElementById("strip");
+    const loader = document.getElementById("loader");
+    const articles = window.ARTICLES || [];
+    if (articles.length) {
+      loader.remove();
+      articles.forEach((a, i) => {
+        const pub = a.status === "published";
+        const card = document.createElement("article");
+        card.className = "card";
+        card.style.animationDelay = (0.15 + i * 0.12) + "s";
+        const title = pub && a.url ? `<a href="${esc(a.url)}">${esc(a.title)}</a>` : esc(a.title);
+        card.innerHTML = `
+          <span class="badge${pub ? "" : " soon"}">${pub ? "published" : "forthcoming"}</span>
+          <h3>${title}</h3>
+          <p>${esc(a.standfirst || "")}</p>
+          <p class="meta">${esc(a.object || "")}${a.since ? " · since " + esc(a.since) : ""}${pub ? "" : " · claim it"}</p>`;
+        strip.appendChild(card);
+      });
+    } else {
+      loader.textContent = "the ledger is empty — run `make build`, or be the first to write";
+    }
+
+    // The Register: records from projects.js
+    const list = document.getElementById("register");
+    (window.PROJECTS || []).forEach((p, i) => {
+      const li = document.createElement("li");
+      li.className = "rec";
+      const name = p.url ? `<a href="${esc(p.url)}">${esc(p.name)}</a>` : esc(p.name);
+      const status = (p.status || "in use").toLowerCase();
+      li.innerHTML = `
+        <span class="rec-id">rec ${String(i + 1).padStart(3, "0")}</span>
+        <h3 class="rec-name">${name}</h3>
+        <span class="badge${status === "in use" ? "" : " soon"}">${esc(status)}</span>
+        <p class="rec-desc">${esc(p.desc || "")}${p.since ? " — since " + esc(p.since) : ""}</p>`;
+      list.appendChild(li);
+    });
+  })();
+</script>

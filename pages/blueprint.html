@@ -1,0 +1,264 @@
+---
+title: The Blueprint
+palette: marble
+desc: The founding brainstorm: three lanes of output, four self-organizing mechanisms, the tools, the growth path.
+---
+<style>
+  /* Single-theme by design: greenbar fanfold paper, same tokens as iusethis.org */
+  :root {
+    --paper: #f5f8f3;
+    --band:  #e4efe1;
+    --ink:   #263229;
+    --faint: #6d7d70;
+    --rule:  #b9ccb8;
+    --stamp: #a33327;
+    --link:  #1c5e8f;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --line: 1.55rem;
+  }
+  body {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    line-height: var(--line);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--paper) 0, var(--paper) calc(var(--line) * 3),
+      var(--band) calc(var(--line) * 3), var(--band) calc(var(--line) * 6)
+    );
+  }
+  .tractor {
+    position: fixed; top: 0; bottom: 0; width: 2.25rem; z-index: 1;
+    background-image: radial-gradient(circle at 50% 50%, var(--paper) 0.28rem, rgba(38,50,41,0.28) 0.34rem, transparent 0.42rem);
+    background-size: 100% 1.5rem;
+  }
+  .tractor.left  { left: 0;  border-right: 1px dashed var(--rule); }
+  .tractor.right { right: 0; border-left: 1px dashed var(--rule); }
+
+  .sheet { max-width: 46rem; margin: 0 auto; padding: calc(var(--line)*2) 3.5rem calc(var(--line)*4); }
+
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { background: var(--ink); color: var(--paper); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+  .jobline {
+    font-size: 0.75rem; letter-spacing: 0.08em; color: var(--faint);
+    text-transform: uppercase; border-bottom: 1px dashed var(--rule);
+    padding-bottom: 0.25rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.02em; margin: calc(var(--line)*1.5) 0 var(--line);
+    text-wrap: balance;
+  }
+  h1 .dim { color: var(--faint); font-weight: 400; }
+  .lede { max-width: 36rem; margin: 0 0 var(--line); }
+
+  h2 {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--stamp);
+    border-top: 1px dashed var(--rule);
+    padding-top: var(--line);
+    margin: calc(var(--line)*1.5) 0 calc(var(--line)*0.5);
+  }
+  h3 { font-size: 1rem; font-weight: 700; margin: var(--line) 0 0.25rem; }
+  p { margin: 0.5rem 0; max-width: 40rem; }
+  ul, ol { margin: 0.5rem 0; padding-left: 1.4rem; max-width: 38rem; }
+  li { margin: 0.25rem 0; }
+  li::marker { color: var(--faint); }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  code {
+    background: rgba(38,50,41,0.07); padding: 0.05rem 0.3rem; border-radius: 2px;
+    font-family: inherit; font-size: 0.88em;
+  }
+
+  .lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin: var(--line) 0; }
+  .lane {
+    border: 1px solid var(--rule); border-radius: 2px; background: var(--paper);
+    padding: 0.9rem 1rem;
+  }
+  .lane .tag { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  .lane h3 { margin-top: 0.15rem; }
+  .lane p { font-size: 0.85rem; line-height: 1.35rem; }
+
+  .mech { border-left: 3px solid var(--rule); padding: 0.1rem 0 0.1rem 1rem; margin: 0.9rem 0; }
+  .mech h3 { margin: 0 0 0.15rem; }
+  .mech p { margin: 0; font-size: 0.9rem; }
+
+  .tbl-wrap { overflow-x: auto; margin: var(--line) 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; line-height: 1.35rem; background: var(--paper); }
+  th {
+    text-align: left; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--faint); font-weight: 500; border-bottom: 1px solid var(--rule); padding: 0.4rem 0.75rem;
+  }
+  td { border-bottom: 1px dashed var(--rule); padding: 0.45rem 0.75rem; vertical-align: top; }
+  td:first-child { white-space: nowrap; font-weight: 700; }
+
+  .stage { display: flex; gap: 1rem; margin: 0.9rem 0; align-items: baseline; }
+  .stage .when {
+    flex: 0 0 8.5rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--stamp); font-weight: 500; text-align: right;
+  }
+  .stage .what { flex: 1; font-size: 0.9rem; }
+  .stage .what strong { display: block; }
+
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding-left: 1.6rem; position: relative; }
+  .checklist li::before {
+    content: "☐"; position: absolute; left: 0; color: var(--faint);
+  }
+  .checklist li.done::before { content: "☑"; color: var(--stamp); }
+
+  .q { font-style: italic; }
+
+  footer {
+    margin-top: calc(var(--line)*2); font-size: 0.75rem; color: var(--faint);
+    letter-spacing: 0.05em; border-top: 1px dashed var(--rule); padding-top: var(--line);
+  }
+
+  @media (max-width: 40rem) {
+    .tractor { display: none; }
+    .sheet { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .stage { flex-direction: column; gap: 0.1rem; }
+    .stage .when { text-align: left; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet > * { animation: feed 0.3s ease-out backwards; }
+    .sheet > *:nth-child(-n+4) { animation-delay: 0.08s; }
+    @keyframes feed { from { opacity: 0; transform: translateY(0.35rem); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<div class="tractor left" aria-hidden="true"></div>
+<div class="tractor right" aria-hidden="true"></div>
+
+<div class="sheet">
+  <header>
+    <div class="jobline">
+      <span>job: org-blueprint</span>
+      <span>rev: 001 · 2026-08-31</span>
+      <span>user: paulr@sdf.org</span>
+    </div>
+    <h1>iusethis, the organization<span class="dim">.</span></h1>
+    <p class="lede">
+      A brainstorm for growing iusethis.org from a one-page register into a
+      contributor-run organization — without anyone managing anyone. The rule
+      that makes the whole thing coherent: <strong>only what's actually in use
+      gets registered</strong>, and only the person using it gets to say so.
+    </p>
+  </header>
+
+  <h2>Three lanes of output</h2>
+  <p>Everything the org could produce is the same material at three depths.
+     A record can grow into a write-up; a write-up is already the script for
+     a video. One pipeline, not three programs.</p>
+  <div class="lanes">
+    <div class="lane">
+      <span class="tag">lane 1 · shipping now</span>
+      <h3>Records</h3>
+      <p>One-line register entries on the site. Cheapest possible contribution:
+         a single PR, merged on format check alone. This is the funnel — every
+         contributor's first commit.</p>
+    </div>
+    <div class="lane">
+      <span class="tag">lane 2 · next</span>
+      <h3>Write-ups &amp; stacks</h3>
+      <p>First-person pieces: how one tool earns its place, or how a whole
+         stack hangs together ("my static blog stack", "my home server stack").
+         Stacks cross-link records — that's where the site becomes browsable.</p>
+    </div>
+    <div class="lane">
+      <span class="tag">lane 3 · when chartered</span>
+      <h3>Video</h3>
+      <p>A YouTube channel of 5–10 minute screen-shares: the user demoing the
+         tool inside their real workflow. Low production on purpose — honesty
+         is the brand. A write-up is the script; the terminal is the set.</p>
+    </div>
+  </div>
+
+  <h2>The self-organizing system</h2>
+  <p>No roadmap owner, no task assignment, no meetings. Four mechanisms
+     replace management — all now codified in the repo's
+     <code>CONTRIBUTING.md</code>:</p>
+  <div class="mech">
+    <h3>Do-ocracy</h3>
+    <p>Doing the work confers authority over it. Nobody approves starting; the repo history is the org chart.</p>
+  </div>
+  <div class="mech">
+    <h3>Advice process</h3>
+    <p>Before acting on something that affects others, ask them — then act. Advice is input, never a veto.</p>
+  </div>
+  <div class="mech">
+    <h3>Lazy consensus</h3>
+    <p>72 hours of silence on a proposal is a yes. Irreversible things (deletions, license, money) need explicit approval.</p>
+  </div>
+  <div class="mech">
+    <h3>Charterable working groups</h3>
+    <p>Any two people can PR a one-page charter and own an area — the YouTube
+       channel, the stacks section, the build pipeline. Groups idle 90 days are
+       archived by whoever notices. This is how the org grows arms without a
+       founder assigning them.</p>
+  </div>
+  <p>The org's memory is a decision log (<code>docs/decisions/</code>): a few
+     sentences per decision — context, call, who was consulted. It replaces
+     status meetings entirely.</p>
+
+  <h2>Online tools</h2>
+  <p>One filter: if a tool's output can't be checked into git or linked from
+     an issue, it isn't a system of record here.</p>
+  <div class="tbl-wrap">
+    <table>
+      <tr><th>Function</th><th>Tool</th><th>Why this one</th></tr>
+      <tr><td>Source of truth</td><td>GitHub org <code>iusethis</code></td>
+          <td>Content, charters, decisions, SOPs — all files under review. Free, and portable to any git host if GitHub ever sours.</td></tr>
+      <tr><td>Proposals</td><td>GitHub Issues + Discussions</td>
+          <td>Lazy consensus needs public timestamps; issue templates (already in the repo) make suggesting a write-up a fill-in form.</td></tr>
+      <tr><td>Publishing</td><td>GitHub Pages + Actions</td>
+          <td>Already deployed. Actions later builds the site from per-record data files — CI is the only "employee".</td></tr>
+      <tr><td>Chat</td><td>IRC <code>#iusethis</code> (libera) or SDF <code>com</code></td>
+          <td>Fits the culture, zero cost. Ephemeral by policy: anything binding goes back to an issue.</td></tr>
+      <tr><td>Video</td><td>YouTube + an archive.org mirror</td>
+          <td>Reach on YouTube, permanence on the archive. Channel credentials owned by the video working group, named in its charter.</td></tr>
+    </table>
+  </div>
+
+  <h2>Tech stack growth path</h2>
+  <p>Stay static; add structure only when the data demands it. Never a
+     database, never a server — the whole org runs on files.</p>
+  <div class="stage"><span class="when">now</span>
+    <span class="what"><strong>Zero build</strong> One <code>index.html</code> + <code>projects.js</code>. Shipped.</span></div>
+  <div class="stage"><span class="when">~25 records</span>
+    <span class="what"><strong>One file per record</strong> YAML in <code>records/</code>, a GitHub Action concatenates at deploy. PRs stop colliding on one file.</span></div>
+  <div class="stage"><span class="when">write-ups live</span>
+    <span class="what"><strong>Static site generator</strong> Eleventy or Hugo, keeping the greenbar design system. Write-ups and stack pages render from markdown.</span></div>
+  <div class="stage"><span class="when">later, maybe</span>
+    <span class="what"><strong>Feeds &amp; API</strong> RSS per lane, a JSON dump of the register, per-user pages. Still just files.</span></div>
+
+  <h2>First 30 days</h2>
+  <ul class="checklist">
+    <li class="done">Repo initialized: site, MIT license, CONTRIBUTING SOP, org handbook, issue templates</li>
+    <li>Create the <code>iusethis</code> GitHub org and push; enable Pages from <code>main</code></li>
+    <li>DNS: TXT verification record, then apex A/AAAA records, then Enforce HTTPS (steps in README)</li>
+    <li>Seed the register with 8–10 of Paul's real records — the register must not look empty to its first visitor</li>
+    <li>Write one exemplar write-up — it becomes the template others imitate</li>
+    <li>Open 3–5 write-up-suggestion issues as claimable starters</li>
+    <li>Announce once where the audience already is: SDF com/IRC, Hacker News "Show HN", Mastodon</li>
+    <li>Charter the video group only when a second person wants it — chartering solo is managing</li>
+  </ul>
+
+  <h2>Open questions for the next session</h2>
+  <ul>
+    <li class="q">Scope: software only, or hardware and services too? ("I use this keyboard…")</li>
+    <li class="q">Is the register personal-per-contributor (many small registers) or one shared register with attribution?</li>
+    <li class="q">Does "dormant" content age out publicly, or is the history part of the honesty?</li>
+    <li class="q">Money: accept none (simplest), or an Open Collective the moment any tool costs anything?</li>
+    <li class="q">Name check: is iusethis.com's dormant trademark history worth a look before the channel launches?</li>
+  </ul>
+
+  <footer>
+    <p>iusethis.org · blueprint rev 001 · MIT · paulr@sdf.org · end of listing ␄</p>
+  </footer>
+</div>

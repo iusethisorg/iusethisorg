@@ -1,0 +1,356 @@
+---
+title: The Identity — Proposal 001
+palette: marble
+desc: Proposal 001: the claim, the marks, the ledger article format, and the four bank palettes.
+---
+<style>
+  :root {
+    --bg: #f6f1e5; --surface: #fdfaf2; --ink: #2b2416; --muted: #6e6350;
+    --rule: #d9cfb8; --accent: #175a43; --gold: #a67c1f; --mahogany: #5c3a24;
+    --disp: "Fraunces", Georgia, serif;
+    --body: "Newsreader", Georgia, serif;
+    --data: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #201b12; --surface: #2a2418; --ink: #ede4d0; --muted: #a69a80;
+      --rule: #4a4130; --accent: #4fa47e; --gold: #d4af37; --mahogany: #c08a5f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #201b12; --surface: #2a2418; --ink: #ede4d0; --muted: #a69a80;
+    --rule: #4a4130; --accent: #4fa47e; --gold: #d4af37; --mahogany: #c08a5f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 1.02rem; line-height: 1.6;
+  }
+  .page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .kicker {
+    font-family: var(--data); font-size: 0.72rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: var(--disp); font-weight: 700; letter-spacing: -0.01em;
+    font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.02; margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  h1 .g { color: var(--gold); } h1 .v { color: var(--accent); } h1 .m { color: var(--mahogany); }
+  .claim {
+    font-family: var(--data); font-size: 0.78rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); margin: 0.75rem 0 1.5rem;
+  }
+  .lede { font-family: var(--disp); font-style: italic; font-size: 1.3rem; line-height: 1.45; color: var(--muted); max-width: 38rem; margin: 0 0 2rem; }
+
+  h2 {
+    font-family: var(--disp); font-weight: 600; font-size: 1.5rem;
+    margin: 3rem 0 0.75rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    text-wrap: balance;
+  }
+  h2 .no { color: var(--gold); font-feature-settings: "lnum"; margin-right: 0.4rem; }
+  p { max-width: 40rem; margin: 0 0 1rem; }
+  ul, ol { max-width: 38rem; padding-left: 1.3rem; }
+  li { margin: 0.4rem 0; }
+  li::marker { color: var(--gold); }
+  strong { font-weight: 600; }
+  code { font-family: var(--data); font-size: 0.85em; background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: 0.03rem 0.3rem; }
+
+  /* the coin mark */
+  .lockup { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0; }
+  .coin { width: 108px; height: 108px; flex: none; }
+
+  /* word semantics cards */
+  .words { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .word { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--wc); border-radius: 2px; padding: 1rem 1.1rem; }
+  .word h3 { font-family: var(--disp); font-size: 1.6rem; font-weight: 700; margin: 0; color: var(--wc); }
+  .word .role { font-family: var(--data); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .word p { font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0; }
+
+  /* palettes */
+  .pal { margin: 1.5rem 0; }
+  .pal h3 { font-family: var(--disp); font-size: 1.1rem; font-weight: 600; margin: 0 0 0.1rem; }
+  .pal .use { font-family: var(--data); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .rows { display: grid; gap: 0.4rem; }
+  .row { display: grid; grid-template-columns: 4.2rem repeat(5, 1fr); gap: 0.4rem; align-items: stretch; }
+  .row .lab { font-family: var(--data); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); align-self: center; }
+  .sw { border-radius: 2px; border: 1px solid var(--rule); padding: 1.35rem 0.35rem 0.25rem; font-family: var(--data); font-size: 0.6rem; letter-spacing: 0.02em; }
+  .sw span { display: block; }
+
+  .tblwrap { overflow-x: auto; margin: 1.25rem 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; background: var(--surface); }
+  th { font-family: var(--data); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--rule); }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px dashed var(--rule); vertical-align: top; }
+  td.fig { font-family: var(--data); font-size: 0.75rem; color: var(--gold); white-space: nowrap; }
+  td b { font-family: var(--disp); font-weight: 600; }
+
+  .note {
+    background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--gold);
+    border-radius: 2px; padding: 0.9rem 1.1rem; font-size: 0.9rem; margin: 1.5rem 0; max-width: 40rem;
+  }
+  footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-family: var(--data); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.7; }
+</style>
+
+<div class="page">
+  <header>
+    <p class="kicker">Proposal 001 · open for review · 72-hour lazy consensus</p>
+    <h1><span class="g">I.</span> <span class="v">Use.</span> <span class="m">This.</span></h1>
+    <p class="claim">The expert · the practice · the object</p>
+    <p class="lede">iusethis is a claim, and an entry is a review in the
+      fullest sense: a love story, a historical tale, of an expert and the
+      tools. One man and his trainset, not a survey of train
+      gauges. This proposal sets the editorial identity, the article format,
+      the site-wide color system, the logo, and how we find the people who
+      can write this way.</p>
+  </header>
+
+  <h2><span class="no">1.</span>The mark</h2>
+  <div class="lockup">
+    <svg class="coin" style="height:150px; width:auto" viewBox="14 9 192 226" role="img" aria-label="The seal: a gold coin struck with I. Use. This. stacked, the arrow-T breaking through the rim">
+      <circle fill="#8c6d1f" cx="110" cy="105" r="86"/>
+      <circle fill="#c9a227" cx="110" cy="105" r="78"/>
+      <circle fill="none" stroke="#8c6d1f" stroke-width="3" stroke-dasharray="2 6" cx="110" cy="105" r="66"/>
+      <text fill="#2a1d12" x="110" y="78" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="34">I.</text>
+      <text fill="#2a1d12" x="110" y="118" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="34">Use.</text>
+      <path fill="#2a1d12" d="M 68 128 H 92 V 134 H 83 V 196 H 96 L 80 218 L 64 196 H 77 V 134 H 68 Z"/>
+      <text fill="#2a1d12" x="98" y="152" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="34">his.</text>
+    </svg>
+    <svg viewBox="440 40 300 130" style="height:108px; flex:none" role="img" aria-label="The wordmark 'This.' with the T drawn as a downward arrow">
+      <path fill="var(--mahogany)" d="M 444 68 H 492 V 80 H 474 V 126 H 486 L 468 150 L 450 126 H 462 V 80 H 444 Z"/>
+      <text fill="var(--mahogany)" x="497" y="118" font-family="Fraunces, Georgia, serif" font-size="72" font-weight="700" letter-spacing="1">his.</text>
+    </svg>
+    <p style="max-width:28rem">The seal carries all three elements —
+      <strong>I. / Use. / This.</strong> struck in coin relief, ringed the way
+      a © circles its C — and the arrow-T's shaft breaks through the rim, so
+      the seal points at whatever it is affixed to. Official mark and
+      copyright seal in one:
+      <span style="font-family:var(--data); font-size:0.85em">© iusethis.org</span>.
+      Wordmark colors: I in gold, Use in green, This in mahogany.
+      Shipped as <code>assets/logo.svg</code> with its own dark-theme colors
+      and a one-time load action: the wordmark's arrow strikes downward into
+      place (pure CSS, honors reduced motion). In running text, "This" stays
+      plain text — the arrow lives in the marks only.</p>
+  </div>
+  <div class="note"><strong>The arrow-T.</strong> The T of <em>This</em> is a downward
+    arrow — crossbar and stem descending through the baseline into an
+    arrowhead. The mark points at whatever it is affixed to; that is the
+    grammar of the logo. Which makes the brand meta: put it on a device, a
+    case, a sticker on a crockpot, and the mark itself testifies
+    <em>this is used</em>. Wherever it sits, the arrow supplies the object.</div>
+
+  <div class="lockup">
+    <svg style="height:150px; flex:none" viewBox="0 0 220 260" role="img" aria-label="The Bearer: a graduate figure holding the mark to their chest like a diploma">
+      <circle fill="var(--mahogany)" cx="110" cy="74" r="26"/>
+      <polygon fill="var(--mahogany)" points="60,44 110,22 160,44 110,66"/>
+      <path stroke="#c9a227" stroke-width="3" fill="none" d="M 160 44 L 164 78"/>
+      <circle fill="#c9a227" cx="164" cy="83" r="5"/>
+      <path fill="var(--accent)" d="M 34 250 L 34 170 Q 34 112 110 112 Q 186 112 186 170 L 186 250 Z"/>
+      <rect fill="#8c6d1f" x="58" y="140" width="104" height="84" rx="6"/>
+      <rect fill="#c9a227" x="64" y="146" width="92" height="72" rx="4"/>
+      <text fill="#2a1d12" x="110" y="168" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17">I.</text>
+      <text fill="#2a1d12" x="110" y="188" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17">Use.</text>
+      <path fill="#2a1d12" d="M 88 196 H 100 V 199 H 95.5 V 210 H 102 L 94 220 L 86 210 H 92.5 V 199 H 88 Z"/>
+      <text fill="#2a1d12" x="103" y="208" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17">his.</text>
+      <circle fill="var(--mahogany)" cx="70" cy="226" r="9"/>
+      <circle fill="var(--mahogany)" cx="150" cy="226" r="9"/>
+    </svg>
+    <p style="max-width:28rem"><strong>The Bearer</strong> — the second depiction:
+      a graduate holding the mark to their chest the way a diploma is held in
+      the commencement photo. <em>I got it, I worked for it, I use it, it got
+      me a job.</em> <code>/s</code><br>
+      Posed in deliberate meta irony, and the <code>/s</code> belongs to the
+      caption: the Reddit sarcasm tag, born as a fake closing HTML tag
+      (<a href="https://knowyourmeme.com/memes/fake-html-tags">Know Your Meme:
+      Fake HTML Tags</a>) — a fitting citation for a static-HTML archive. The
+      joke is load-bearing: we know exactly how proudly professing a crockpot
+      reads, and we mean every word anyway. Irony opens the door; sincerity
+      furnishes the room. The pose is the editorial stance in one image —
+      ownership and earned competency, journalist and expert at once. The
+      write-up <em>is</em> the diploma. Uses: author badges beside bylines,
+      the About page, merch. Shipped as <code>assets/bearer.svg</code>.</p>
+  </div>
+
+  <h2><span class="no">2.</span>The three words</h2>
+  <div class="words">
+    <div class="word" style="--wc: var(--gold)">
+      <h3>I</h3><span class="role">the expert</span>
+      <p>Intimate, not cursory, knowledge — a professor professing: publicly,
+         named, open to peers. The author's years are the credential.</p>
+    </div>
+    <div class="word" style="--wc: var(--accent)">
+      <h3>Use</h3><span class="role">the practice</span>
+      <p>Operated daily, bought over again. The cadence of locking in and
+         losing time — the repetition musical instruments make honorable.</p>
+    </div>
+    <div class="word" style="--wc: var(--mahogany)">
+      <h3>This</h3><span class="role">the object</span>
+      <p>A specific item in the catalog. Not the category, not the market —
+         this one, with its wear patterns and its provenance.</p>
+    </div>
+  </div>
+
+  <h2><span class="no">3.</span>What the research found</h2>
+  <ul>
+    <li><strong>Object biography.</strong> Material-culture historians already read
+      cultures from how people used and cared for things. iusethis writes the
+      primary sources future historians of technology will wish existed —
+      that's the pitch to contributors.</li>
+    <li><strong><a href="https://usesthis.com/">The Setup (usesthis.com)</a></strong> —
+      the closest ancestor: 15+ years of "what do you use" interviews. Lesson:
+      a fixed question format scales across hundreds of writers, and the
+      archive became a research dataset. Our difference: one object, at depth,
+      asking <em>why you love it and how you mastered it</em>.</li>
+    <li><strong><a href="https://indieweb.org/IndieWeb_Carnival">IndieWeb Carnival</a></strong> —
+      a monthly themed prompt answered on people's own sites, aggregated by a
+      host. A proven, zero-cost recruiting engine for exactly our writers.</li>
+    <li><strong>Contributor-recruiting practice:</strong> publish guidelines under the
+      literal phrase "contributor guidelines" so searching writers find you;
+      invite admired writers directly with one specific sentence; recruit
+      where the niche already talks.</li>
+  </ul>
+
+  <h2><span class="no">4.</span>Seven ways to use the entries</h2>
+  <ol>
+    <li><strong>The Archive framing</strong> — "primary sources for the history of
+      everyday tools." Every article is testimony.</li>
+    <li><strong>The iusethis Carnival</strong> — quarterly themed call; writers post on
+      their own sites, we syndicate by permission into the catalog.</li>
+    <li><strong>Direct commissions</strong> — an <code>invite-wishlist</code> issue label of
+      writers whose devotion is already visible, invited personally.</li>
+    <li><strong>Interview fallback</strong> — a structured interview an editor
+      transcribes into the format, for experts who don't write.</li>
+    <li><strong>Records as scouting</strong> — any register record saying "since 2009"
+      earns a write-up invitation. Longevity of use is the editorial signal.</li>
+    <li><strong>Multi-owner biographies</strong> — a "still in use by" footer lets
+      inheritors link their own story to the same object over decades.</li>
+    <li><strong>Entries as credentials</strong> — an entry is a public certificate of
+      mastery; authors cite their entries the way a professor cites
+      publications. A CV line that proves ten years of practice, not a
+      claimed skill.</li>
+  </ol>
+
+  <h2><span class="no">5.</span>The ledger format — long-form, five images</h2>
+  <p>Magazine structure: each image opens a section and gives it context.
+     Template shipped as <code>article.html</code>. The Register data block is
+     required — it is what makes this an archive, not a blog.</p>
+  <div class="tblwrap">
+    <table>
+      <tr><th>Image</th><th>Section</th><th>Carries</th></tr>
+      <tr><td class="fig">FIG. 1</td><td><b>Title &amp; Register</b></td>
+          <td>The hero: the object in its place of use. Then the data: in use since · hours logged · hours to fluency · expected remaining years · provenance · care ritual.</td></tr>
+      <tr><td class="fig">FIG. 2</td><td><b>The Meeting</b></td>
+          <td>How it entered your life; what it replaced; the first sign it was different.</td></tr>
+      <tr><td class="fig">FIG. 3</td><td><b>The Practice</b></td>
+          <td>The cadence of locking in; a session minute by minute; the pull quote.</td></tr>
+      <tr><td class="fig">FIG. 4</td><td><b>The Expertise</b></td>
+          <td>The iron-core-glaze analysis only years of use can teach. The professed knowledge.</td></tr>
+      <tr><td class="fig">FIG. 5</td><td><b>The Care &amp; the Years</b></td>
+          <td>Maintenance, lifecycle, succession — commercialism become stewardship. Then the appendix: what the object makes (the recipe, the score, the config).</td></tr>
+    </table>
+  </div>
+  <p>Hard rules: first person; the Register numbers are a merge requirement;
+     no affiliate links ever; at least one passage a newcomer couldn't write.</p>
+
+  <h2><span class="no">6.</span>The color system — four palettes, light &amp; dark</h2>
+  <p>Trust colors of an opulent old bank: deep green, burnished gold, dark
+     mahogany, veined marble. One <em>gold</em> token threads all four.
+     Shipped as <code>assets/tokens.css</code>; this page is set in Marble
+     and follows your OS theme.</p>
+
+  <div class="pal">
+    <h3>Marble <span style="color:var(--muted); font-weight:400">— default</span></h3>
+    <div class="use">reading · articles</div>
+    <div class="rows">
+      <div class="row"><span class="lab">light</span>
+        <div class="sw" style="background:#f6f1e5;color:#2b2416"><span>bg</span>#F6F1E5</div>
+        <div class="sw" style="background:#fdfaf2;color:#2b2416"><span>surface</span>#FDFAF2</div>
+        <div class="sw" style="background:#2b2416;color:#f6f1e5"><span>ink</span>#2B2416</div>
+        <div class="sw" style="background:#175a43;color:#f6f1e5"><span>accent</span>#175A43</div>
+        <div class="sw" style="background:#a67c1f;color:#f6f1e5"><span>gold</span>#A67C1F</div></div>
+      <div class="row"><span class="lab">dark</span>
+        <div class="sw" style="background:#201b12;color:#ede4d0"><span>bg</span>#201B12</div>
+        <div class="sw" style="background:#2a2418;color:#ede4d0"><span>surface</span>#2A2418</div>
+        <div class="sw" style="background:#ede4d0;color:#201b12"><span>ink</span>#EDE4D0</div>
+        <div class="sw" style="background:#4fa47e;color:#201b12"><span>accent</span>#4FA47E</div>
+        <div class="sw" style="background:#d4af37;color:#201b12"><span>gold</span>#D4AF37</div></div>
+    </div>
+  </div>
+
+  <div class="pal">
+    <h3>Vault</h3>
+    <div class="use">chrome · covers · home page</div>
+    <div class="rows">
+      <div class="row"><span class="lab">light</span>
+        <div class="sw" style="background:#edf3ee;color:#14291f"><span>bg</span>#EDF3EE</div>
+        <div class="sw" style="background:#f8fbf7;color:#14291f"><span>surface</span>#F8FBF7</div>
+        <div class="sw" style="background:#14291f;color:#edf3ee"><span>ink</span>#14291F</div>
+        <div class="sw" style="background:#0f4d38;color:#edf3ee"><span>accent</span>#0F4D38</div>
+        <div class="sw" style="background:#b08d2a;color:#14291f"><span>gold</span>#B08D2A</div></div>
+      <div class="row"><span class="lab">dark</span>
+        <div class="sw" style="background:#0c1f18;color:#ddebdf"><span>bg</span>#0C1F18</div>
+        <div class="sw" style="background:#143026;color:#ddebdf"><span>surface</span>#143026</div>
+        <div class="sw" style="background:#ddebdf;color:#0c1f18"><span>ink</span>#DDEBDF</div>
+        <div class="sw" style="background:#6fc79e;color:#0c1f18"><span>accent</span>#6FC79E</div>
+        <div class="sw" style="background:#d9b84a;color:#0c1f18"><span>gold</span>#D9B84A</div></div>
+    </div>
+  </div>
+
+  <div class="pal">
+    <h3>Coin</h3>
+    <div class="use">features · celebration</div>
+    <div class="rows">
+      <div class="row"><span class="lab">light</span>
+        <div class="sw" style="background:#f7efd8;color:#33260c"><span>bg</span>#F7EFD8</div>
+        <div class="sw" style="background:#fcf7e8;color:#33260c"><span>surface</span>#FCF7E8</div>
+        <div class="sw" style="background:#33260c;color:#f7efd8"><span>ink</span>#33260C</div>
+        <div class="sw" style="background:#8c6d1f;color:#f7efd8"><span>accent</span>#8C6D1F</div>
+        <div class="sw" style="background:#c9a227;color:#33260c"><span>gold</span>#C9A227</div></div>
+      <div class="row"><span class="lab">dark</span>
+        <div class="sw" style="background:#241c09;color:#f0e5c4"><span>bg</span>#241C09</div>
+        <div class="sw" style="background:#31280f;color:#f0e5c4"><span>surface</span>#31280F</div>
+        <div class="sw" style="background:#f0e5c4;color:#241c09"><span>ink</span>#F0E5C4</div>
+        <div class="sw" style="background:#e0be4e;color:#241c09"><span>accent</span>#E0BE4E</div>
+        <div class="sw" style="background:#c9a227;color:#241c09"><span>gold</span>#C9A227</div></div>
+    </div>
+  </div>
+
+  <div class="pal">
+    <h3>Teller</h3>
+    <div class="use">archive · history pages</div>
+    <div class="rows">
+      <div class="row"><span class="lab">light</span>
+        <div class="sw" style="background:#f2eae2;color:#2a1d12"><span>bg</span>#F2EAE2</div>
+        <div class="sw" style="background:#faf5ef;color:#2a1d12"><span>surface</span>#FAF5EF</div>
+        <div class="sw" style="background:#2a1d12;color:#f2eae2"><span>ink</span>#2A1D12</div>
+        <div class="sw" style="background:#5c3a24;color:#f2eae2"><span>accent</span>#5C3A24</div>
+        <div class="sw" style="background:#b08d2a;color:#2a1d12"><span>gold</span>#B08D2A</div></div>
+      <div class="row"><span class="lab">dark</span>
+        <div class="sw" style="background:#1d130c;color:#ebdfd3"><span>bg</span>#1D130C</div>
+        <div class="sw" style="background:#291b11;color:#ebdfd3"><span>surface</span>#291B11</div>
+        <div class="sw" style="background:#ebdfd3;color:#1d130c"><span>ink</span>#EBDFD3</div>
+        <div class="sw" style="background:#c08a5f;color:#1d130c"><span>accent</span>#C08A5F</div>
+        <div class="sw" style="background:#d4af37;color:#1d130c"><span>gold</span>#D4AF37</div></div>
+    </div>
+  </div>
+
+  <div class="note"><strong>Open sub-question for review:</strong> the register page
+    currently wears the greenbar printout look. Proposer leans: keep greenbar
+    for the register — the printout <em>is</em> the ledger, the catalog room
+    inside the bank — and use the four palettes everywhere else.</div>
+
+  <h2><span class="no">7.</span>SOP additions if this passes</h2>
+  <ul>
+    <li>Write-ups follow the ledger format; the Register block is a merge requirement (already referenced in <code>CONTRIBUTING.md</code>).</li>
+    <li>New issue label <code>invite-wishlist</code>; anyone may nominate a writer + object.</li>
+    <li>Quarterly carnival theme chosen by whoever volunteers to host; syndication by author permission; author keeps copyright, CC BY-SA for syndicated copies.</li>
+    <li>All new pages draw colors only from <code>assets/tokens.css</code>.</li>
+  </ul>
+
+  <footer>
+    proposal 001 · docs/proposals/001-editorial-identity.md · review by issue comment or PR ·
+    silence for 72 hours is consent · © iusethis.org · MIT (code) / CC BY-SA (writing, proposed)
+  </footer>
+</div>

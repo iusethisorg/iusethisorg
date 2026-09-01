@@ -1,0 +1,167 @@
+---
+title: The Charter
+palette: vault
+desc: The iusethis governance charter: DAO-style governance on GitHub controls, titles, onboarding, and Ballot 1.
+---
+<style>
+  /* Vault palette — governance is chrome */
+  :root {
+    --bg: #edf3ee; --surface: #f8fbf7; --ink: #14291f; --muted: #52685b;
+    --rule: #c4d4c6; --accent: #0f4d38; --gold: #b08d2a;
+    --disp: "Fraunces", Georgia, serif;
+    --body: "Newsreader", Georgia, serif;
+    --data: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1f18; --surface: #143026; --ink: #ddebdf; --muted: #8faf9c;
+      --rule: #2c4a3c; --accent: #6fc79e; --gold: #d9b84a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1f18; --surface: #143026; --ink: #ddebdf; --muted: #8faf9c;
+    --rule: #2c4a3c; --accent: #6fc79e; --gold: #d9b84a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.02rem; line-height: 1.6; }
+  .page { max-width: 48rem; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .kicker { font-family: var(--data); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  h1 { font-family: var(--disp); font-weight: 700; font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.04; margin: 0 0 1rem; text-wrap: balance; }
+  .lede { font-family: var(--disp); font-style: italic; font-size: 1.28rem; line-height: 1.45; color: var(--muted); max-width: 38rem; margin: 0 0 2rem; }
+  h2 { font-family: var(--disp); font-weight: 600; font-size: 1.45rem; margin: 3rem 0 0.75rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); text-wrap: balance; }
+  h2 .no { color: var(--gold); margin-right: 0.4rem; }
+  p { max-width: 40rem; margin: 0 0 1rem; }
+  ul, ol { max-width: 38rem; padding-left: 1.3rem; }
+  li { margin: 0.4rem 0; }
+  li::marker { color: var(--gold); }
+  code { font-family: var(--data); font-size: 0.85em; background: var(--surface); border: 1px solid var(--rule); border-radius: 2px; padding: 0.03rem 0.3rem; }
+  .tblwrap { overflow-x: auto; margin: 1.25rem 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; background: var(--surface); }
+  th { font-family: var(--data); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--rule); }
+  td { padding: 0.5rem 0.75rem; border-bottom: 1px dashed var(--rule); vertical-align: top; }
+  td b { font-family: var(--disp); font-weight: 600; }
+  .phase { border-left: 3px solid var(--gold); background: var(--surface); border-radius: 2px; padding: 0.85rem 1.1rem; margin: 0.9rem 0; max-width: 40rem; }
+  .phase h3 { font-family: var(--disp); font-size: 1.05rem; font-weight: 600; margin: 0 0 0.25rem; }
+  .phase p { margin: 0; font-size: 0.92rem; }
+  .ballot { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--gold); border-radius: 2px; padding: 1rem 1.2rem; margin: 1rem 0; max-width: 40rem; }
+  .ballot .id { font-family: var(--data); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .ballot h3 { font-family: var(--disp); font-size: 1.1rem; font-weight: 600; margin: 0.2rem 0 0.3rem; }
+  .ballot p { margin: 0; font-size: 0.9rem; }
+  .note { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 2px; padding: 0.9rem 1.1rem; font-size: 0.9rem; margin: 1.5rem 0; max-width: 40rem; }
+  footer { margin-top: 3.5rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-family: var(--data); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted); line-height: 1.7; }
+</style>
+
+<div class="page">
+  <header>
+    <p class="kicker">iusethis/iusethis · governance-as-files · ballot 1 open</p>
+    <h1>The iusethis Charter</h1>
+    <p class="lede">A DAO in spirit, run entirely on GitHub controls: proposals
+      are pull requests, votes are reviews, titles are files, and the whole
+      record is <code>git log</code>. Full founder control today — with the
+      handoff written on day one.</p>
+  </header>
+
+  <h2><span class="no">1.</span>Three phases, handoff by design</h2>
+  <p>Most founder-led projects never write a succession plan and improvise
+     one in a crisis. This one is in the first commit.</p>
+  <div class="phase"><h3>Phase 0 — Stewardship (now)</h3>
+    <p>The Steward holds all titles and final say, including veto. Every veto
+       must be written into the proposal it vetoes — logged power is
+       transferable power.</p></div>
+  <div class="phase"><h3>Phase 1 — Council</h3>
+    <p>Triggers automatically when five independent people hold titles. The
+       veto becomes a tie-break; formal votes decide.</p></div>
+  <div class="phase"><h3>Phase 2 — Handoff</h3>
+    <p>The Steward title itself transfers by vote. Everything already lives in
+       an org-owned repo, so handoff is a merge commit, not a migration.</p></div>
+
+  <h2><span class="no">2.</span>GitHub controls as the voting machine</h2>
+  <div class="tblwrap"><table>
+    <tr><th>Governance act</th><th>GitHub mechanism</th></tr>
+    <tr><td><b>Propose</b></td><td>PR adding <code>docs/proposals/NNN-title.md</code></td></tr>
+    <tr><td><b>Vote</b></td><td>PR review — Approve = +1, Request changes = −1</td></tr>
+    <tr><td><b>Who binds</b></td><td>Title-holders (<code>docs/TITLES.md</code>) bind; everyone else votes advisory — always logged, always read</td></tr>
+    <tr><td><b>Enforce</b></td><td>Branch protection + CODEOWNERS on governance paths; GitHub teams mirror titles</td></tr>
+    <tr><td><b>Backlog</b></td><td>One project board, two queues: write-ups and governance proposals</td></tr>
+  </table></div>
+  <p>Defaults: 72-hour lazy consensus for anything reversible; a 7-day formal
+     vote for charter changes, titles, money, licensing, and content removal.</p>
+
+  <h2><span class="no">3.</span>Titles — held, and delegated</h2>
+  <p>A title is a named area of authority. One person may hold many and may
+     delegate any of them — the delegate acts with full authority, the
+     delegation is revocable, both names are in the registry. Titles lapse
+     after six quiet months, without shame.</p>
+  <div class="tblwrap"><table>
+    <tr><th>Title</th><th>Owns</th></tr>
+    <tr><td><b>Steward</b></td><td>Charter, domain, org account, Phase 0 final say</td></tr>
+    <tr><td><b>Registrar</b></td><td>The register of records</td></tr>
+    <tr><td><b>Editor</b></td><td>Write-ups and the ledger format</td></tr>
+    <tr><td><b>Herald</b></td><td>Carnival, announcements, syndication</td></tr>
+    <tr><td><b>Keeper</b></td><td>Site, build, DNS, design tokens</td></tr>
+    <tr><td><b>Moderator</b></td><td>Conduct process — never content taste</td></tr>
+    <tr><td><b>Archivist</b></td><td>Decision log and archive integrity</td></tr>
+    <tr><td><b>Bursar</b></td><td>Money (dormant until money exists)</td></tr>
+  </table></div>
+
+  <h2><span class="no">4.</span>Joining — the onboarding SOP</h2>
+  <ol>
+    <li><strong>Apply</strong> — the <em>Join governance</em> issue template: title
+      sought, the object you profess, links to merged work.</li>
+    <li><strong>Sponsorship</strong> — any title-holder comments
+      <code>sponsoring</code> with one specific sentence about your work.
+      Sponsorship is itself recognition.</li>
+    <li><strong>Acceptance</strong> — 72h lazy consensus among holders of the
+      sought title (+ Steward assent in Phase 0). Objections cite work,
+      never vibes.</li>
+    <li><strong>Seating</strong> — a PR adds you to the registry and the GitHub
+      team. The merge commit is the appointment.</li>
+    <li><strong>First act</strong> — you pick your own first task. Nobody
+      assigns it.</li>
+  </ol>
+
+  <h2><span class="no">5.</span>Positive-reinforcement governance</h2>
+  <ul>
+    <li><strong>Assume good faith.</strong> A mistaken contributor is a
+      contributor who cared enough to act. Correct the work, thank the
+      person.</li>
+    <li><strong>Merit is visible.</strong> Titles are granted for demonstrated
+      care; <em>citations</em> — logged praise in the registry — are the
+      currency nomination letters quote.</li>
+    <li><strong>Graduated sanctions</strong> (after Ostrom — flat bans breed
+      resentment): private call-in → public call-out naming the behavior,
+      not the character → 14-day title suspension → removal by vote.</li>
+    <li><strong>The limit.</strong> Governance bounds harm; it does not repair
+      relationships — humans do, off the record, at their own pace. No
+      automated punishments, no reputation scores. When the process ends,
+      the process is over: a person who returns after a sanction returns
+      whole.</li>
+  </ul>
+
+  <h2><span class="no">6.</span>Ballot 1 — open now, closes 2026-09-07</h2>
+  <div class="ballot"><span class="id">Proposal 002 · formal</span>
+    <h3>Adopt the governance charter</h3>
+    <p>Makes GOVERNANCE.md, TITLES.md and ONBOARDING.md the law of the repo.</p></div>
+  <div class="ballot"><span class="id">Proposal 003 · formal</span>
+    <h3>Ratify the editorial identity</h3>
+    <p>Ratifies Proposal 001 in full — the entry-as-love-story definition,
+       the ledger format, the Vault color system, the marks.</p></div>
+  <div class="ballot"><span class="id">Proposal 004 · formal</span>
+    <h3>Seat the founding titles</h3>
+    <p>Seats the founder in all titles — visibly, accountably, temporarily —
+       with delegation open from day one.</p></div>
+  <div class="note"><strong>Bootstrap note:</strong> at opening there is exactly one
+    binding voter, so Ballot 1 is founder-ratified by construction. It is
+    held as a vote anyway: the procedure runs once for real, advisory votes
+    are gathered, and the record shows governance began by the same
+    mechanism that will one day hand it off.</div>
+
+  <footer>
+    the iusethis charter · docs/GOVERNANCE.md · patterns: GitHub Minimum
+    Viable Governance, the Apache Way (binding/advisory votes, merit),
+    PEP 13 (write succession before the crisis), Ostrom (graduated
+    sanctions) · © iusethis.org
+  </footer>
+</div>

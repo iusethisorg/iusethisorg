@@ -29,7 +29,7 @@ new:
 
 ## clean: remove generated files
 clean:
-	rm -f articles.js writeups/*.html
+	rm -f articles.js writeups/*.html index.html setup.html charter.html identity.html blueprint.html
 
 ## help: list targets
 help:

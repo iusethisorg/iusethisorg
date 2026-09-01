@@ -1,0 +1,157 @@
+---
+title: Fork & DNS Setup
+palette: marble
+desc: The full procedure for running your own register of use — fork, build, GitHub Pages, and custom-domain DNS.
+---
+<style>
+  /* The procedure page keeps the greenbar printout look:
+     a continuous-form checklist, as a setup runbook should be. */
+  :root {
+    --paper: #f5f8f3; --band: #e4efe1; --gb-ink: #263229;
+    --gb-faint: #6d7d70; --gb-rule: #b9ccb8; --gb-stamp: #a33327;
+    --gb-link: #1c5e8f; --line: 1.55rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1c211b; --band: #232b21; --gb-ink: #d9e4d6;
+      --gb-faint: #91a08e; --gb-rule: #465244; --gb-stamp: #d98577;
+      --gb-link: #7fb3d9;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c211b; --band: #232b21; --gb-ink: #d9e4d6;
+    --gb-faint: #91a08e; --gb-rule: #465244; --gb-stamp: #d98577;
+    --gb-link: #7fb3d9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-data);
+    font-size: 0.95rem; line-height: var(--line); color: var(--gb-ink);
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(to bottom,
+      var(--paper) 0, var(--paper) calc(var(--line) * 3),
+      var(--band) calc(var(--line) * 3), var(--band) calc(var(--line) * 6));
+  }
+  .site-nav { background: var(--paper); border-bottom-color: var(--gb-rule); }
+  .site-nav a { color: var(--gb-ink); }
+  .site-nav .brand { color: var(--gb-stamp); }
+  .sheet { max-width: 46rem; margin: 0 auto; padding: calc(var(--line)*1.5) 1.5rem calc(var(--line)*4); }
+  a { color: var(--gb-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { background: var(--gb-ink); color: var(--paper); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--gb-stamp); outline-offset: 2px; }
+  .jobline {
+    font-size: 0.75rem; letter-spacing: 0.08em; color: var(--gb-faint);
+    text-transform: uppercase; border-bottom: 1px dashed var(--gb-rule);
+    padding-bottom: 0.25rem; display: flex; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 700; line-height: 1.08;
+       letter-spacing: -0.02em; margin: var(--line) 0; }
+  h1 .dim { color: var(--gb-faint); font-weight: 400; }
+  h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em;
+       text-transform: uppercase; color: var(--gb-stamp);
+       border-top: 1px dashed var(--gb-rule); padding-top: var(--line);
+       margin: calc(var(--line)*1.5) 0 calc(var(--line)*0.5); }
+  p { margin: 0.5rem 0; max-width: 40rem; }
+  ol, ul { max-width: 38rem; padding-left: 1.5rem; margin: 0.5rem 0; }
+  li { margin: 0.35rem 0; }
+  li::marker { color: var(--gb-faint); }
+  code { background: rgba(127,127,127,0.14); padding: 0.05rem 0.3rem;
+         border-radius: 2px; font-family: inherit; font-size: 0.88em; }
+  pre { background: rgba(127,127,127,0.14); border: 1px dashed var(--gb-rule);
+        border-radius: 2px; padding: 0.75rem 1rem; overflow-x: auto;
+        font-size: 0.85em; line-height: 1.5; }
+  .tblwrap { overflow-x: auto; margin: var(--line) 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem;
+          line-height: 1.35rem; background: var(--paper); }
+  th { text-align: left; font-size: 0.7rem; letter-spacing: 0.12em;
+       text-transform: uppercase; color: var(--gb-faint); font-weight: 500;
+       border-bottom: 1px solid var(--gb-rule); padding: 0.4rem 0.75rem; }
+  td { border-bottom: 1px dashed var(--gb-rule); padding: 0.45rem 0.75rem; }
+  footer { margin-top: calc(var(--line)*2); font-size: 0.75rem;
+           color: var(--gb-faint); letter-spacing: 0.05em;
+           border-top: 1px dashed var(--gb-rule); padding-top: var(--line); }
+</style>
+
+<div class="sheet">
+  <div class="jobline">
+    <span>job: fork-and-dns-setup</span>
+    <span>form: greenbar runbook</span>
+    <span>license: MIT</span>
+  </div>
+  <h1>run your own register<span class="dim">.</span></h1>
+  <p>Forking this site is not just permitted — it's the point. The code is
+     MIT: keep the <code>LICENSE</code> file and its copyright line and you
+     are fully compliant. A link back to
+     <a href="https://iusethis.org">iusethis.org</a> is appreciated, never
+     required. This is the whole procedure, fork to custom domain.</p>
+
+  <h2>1 · Fork and make it yours</h2>
+  <ol>
+    <li><a href="https://github.com/iusethisorg/iusethisorg/fork">Fork
+        <code>iusethisorg/iusethisorg</code></a> (an org account is best —
+        governance handoff never requires migrating the repo).</li>
+    <li>Empty <code>articles/</code> and <code>projects.js</code>; put your
+        own objects in. Scaffold a write-up with
+        <code>make new SLUG=my-object</code>.</li>
+    <li>Set your identity: <code>git config user.name</code> /
+        <code>user.email</code>, and your domain in <code>CNAME</code>
+        (or delete <code>CNAME</code> to use
+        <code>&lt;you&gt;.github.io</code>).</li>
+    <li>Build and preview locally:</li>
+  </ol>
+  <pre>make build    # render write-ups + manifest + site pages
+make serve    # preview at http://localhost:8000
+make check    # strict build — what CI runs</pre>
+
+  <h2>2 · Enable GitHub Pages</h2>
+  <ol>
+    <li>Repo <strong>Settings → Pages</strong> → Source:
+        <strong>GitHub Actions</strong>.</li>
+    <li>Push to <code>main</code> — the workflow
+        (<code>.github/workflows/pages.yml</code>) runs
+        <code>make check</code> and deploys. No generated files are ever
+        committed.</li>
+  </ol>
+
+  <h2>3 · Verify your domain (TXT record)</h2>
+  <p>In GitHub: <strong>org/profile Settings → Pages → Add a domain</strong>
+     → enter your domain. GitHub shows a TXT record:</p>
+  <div class="tblwrap"><table>
+    <tr><th>Type</th><th>Name</th><th>Value</th></tr>
+    <tr><td>TXT</td><td><code>_github-pages-challenge-&lt;account&gt;</code></td>
+        <td>(code GitHub displays)</td></tr>
+  </table></div>
+  <p>Create it, wait for propagation
+     (<code>dig TXT _github-pages-challenge-&lt;account&gt;.yourdomain.org +short</code>),
+     then click <strong>Verify</strong>. This prevents domain takeover if
+     the Pages site is ever disabled. For iusethis.org itself the name is
+     <code>_github-pages-challenge-iusethisorg</code>.</p>
+
+  <h2>4 · Point the apex at GitHub Pages</h2>
+  <div class="tblwrap"><table>
+    <tr><th>Type</th><th>Name</th><th>Value</th></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.108.153</code></td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.109.153</code></td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.110.153</code></td></tr>
+    <tr><td>A</td><td><code>@</code></td><td><code>185.199.111.153</code></td></tr>
+    <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8000::153</code></td></tr>
+    <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8001::153</code></td></tr>
+    <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8002::153</code></td></tr>
+    <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8003::153</code></td></tr>
+    <tr><td>CNAME</td><td><code>www</code></td><td><code>&lt;account&gt;.github.io.</code></td></tr>
+  </table></div>
+
+  <h2>5 · Enforce HTTPS</h2>
+  <p>Back in repo <strong>Settings → Pages</strong>: once the domain shows a
+     green check and the certificate is issued (usually within an hour of
+     DNS propagating), tick <strong>Enforce HTTPS</strong>. Done — your
+     register is live.</p>
+
+  <footer>
+    <p>iusethis.org setup runbook · MIT — fork freely ·
+       questions: open an issue at
+       <a href="https://github.com/iusethisorg/iusethisorg/issues">iusethisorg/iusethisorg</a> ·
+       end of listing ␄</p>
+  </footer>
+</div>

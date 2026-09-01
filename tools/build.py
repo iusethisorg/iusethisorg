@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""iusethis static builder.
+"""iusethis static builder — the template page maker.
 
-Reads articles/*.md (front matter + a small text markup), renders
-writeups/<slug>.html from templates/article.html, and emits articles.js
-(the manifest the front-page ledger gallery reads).
+Two pipelines, one command (`make build`):
+
+1. Articles: articles/*.md (front matter + a small text markup) render
+   to writeups/<slug>.html via templates/article.html, and emit
+   articles.js (the manifest the front-page ledger gallery reads).
+2. Pages: pages/<name>.html (front matter + raw HTML body) render into
+   templates/base.html (site shell: nav, fonts, tokens) and land at the
+   site root as <name>.html — index, setup, charter, identity, blueprint.
+   Every root page is generated; edit sources in pages/, never outputs.
 
 No dependencies beyond Python 3 stdlib — runs identically on a laptop
 and in the GitHub Pages action. `make build` is the only entry point
@@ -26,7 +32,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES = ROOT / "articles"
+PAGES = ROOT / "pages"
 TEMPLATE = ROOT / "templates" / "article.html"
+BASE = ROOT / "templates" / "base.html"
 OUT_DIR = ROOT / "writeups"
 
 ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
@@ -127,6 +135,38 @@ def register_rows(meta):
     return "\n      ".join(rows)
 
 
+def render_pages():
+    """pages/<name>.html -> <name>.html at the site root, via base.html."""
+    base = BASE.read_text()
+    count = 0
+    for path in sorted(PAGES.glob("*.html")):
+        text = path.read_text()
+        if not text.startswith("---"):
+            sys.exit(f"{path}: missing front matter (--- block)")
+        _, fm, body = text.split("---", 2)
+        meta = {}
+        for line in fm.strip().splitlines():
+            if ":" in line:
+                key, val = line.split(":", 1)
+                meta[key.strip()] = val.strip()
+        if "title" not in meta:
+            sys.exit(f"{path}: front matter missing 'title'")
+        page = base
+        for key, val in {
+            "TITLE": html.escape(meta["title"]),
+            "PALETTE": meta.get("palette", "marble"),
+            "DESC": html.escape(meta.get("desc", "")),
+            "BODY": body.strip(),
+        }.items():
+            page = page.replace("{{" + key + "}}", val)
+        leftover = re.findall(r"{{\w+}}", page)
+        if leftover:
+            sys.exit(f"{path}: base template placeholders unfilled: {leftover}")
+        (ROOT / path.name).write_text(page)
+        count += 1
+    return count
+
+
 def main():
     template = TEMPLATE.read_text()
     manifest, warnings = [], []
@@ -176,7 +216,9 @@ def main():
           f"window.ARTICLES = {json.dumps(manifest, indent=2)};\n")
     (ROOT / "articles.js").write_text(js)
 
-    print(f"built {published_no} page(s), {len(manifest)} manifest entr(ies)")
+    pages = render_pages()
+    print(f"built {published_no} article(s), {len(manifest)} manifest "
+          f"entr(ies), {pages} site page(s)")
     for w in warnings:
         print(f"warning: {w}", file=sys.stderr)
 
