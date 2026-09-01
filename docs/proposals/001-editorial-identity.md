@@ -73,6 +73,10 @@ recipe listed.
 6. **Pairing with descendants.** Each article can carry a "still in use by"
    footer — future contributors who inherit or adopt the same object link
    their own stories, building the object's multi-owner biography over time.
+7. **Entries as credentials.** An entry is a public certificate of mastery —
+   authors cite their iusethis entries the way a professor cites
+   publications. "Upgraded competencies" become linkable: a CV line that
+   proves ten years of practice, not a claimed skill.
 
 ## 4. The article format ("the ledger format")
 
@@ -131,6 +135,16 @@ whatever it is affixed to — that is the grammar of the logo. Which makes
 the brand meta: put it on a device, a case, a sticker on a crockpot, and
 the mark itself testifies *this is used*. The wordmark never needs a
 photograph beside it; wherever it sits, the arrow supplies the object.
+
+**The Bearer** (`assets/bearer.svg`). The second depiction: a graduate
+figure holding the mark to their chest the way a diploma is held in the
+commencement photo — *I got it, I worked for it, I use it, it got me a
+job.* The pose is the whole editorial stance in one image: ownership,
+earned competency, the story told by the person who did the work, from
+the doubled perspective of journalist and expert. The write-up *is* the
+diploma — publishing an entry is the public certificate of an upgraded
+competency. Uses: author badges beside bylines, the About page, the
+carnival announcement, merch.
 
 ## 7. SOP additions (merged into CONTRIBUTING.md if this proposal passes)
 
