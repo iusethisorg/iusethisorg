@@ -36,8 +36,9 @@ whole stack that hangs together.
 2. Anyone may claim it by commenting `claiming` — first claim wins; a claim
    goes stale after 30 days of no draft.
 3. Draft as a PR into `writeups/` (kebab-case filename, front matter:
-   `title`, `author`, `date`, `tools`), following the **ledger format**:
-   a love story of an object, not a review — five images separating the
+   `title`, `author`, `date`, `tools`), following the **ledger format**.
+   An entry is a review in the iusethis sense — a love story, a historical
+   tale, of an expert and the tools — with five images separating the
    sections (Meeting, Practice, Expertise, Care), a required Register data
    block (in use since, hours logged, hours to fluency, expected remaining
    life, provenance, care ritual), and an appendix with what the object

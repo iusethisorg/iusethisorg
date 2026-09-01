@@ -16,7 +16,8 @@
   instruments make repetition culturally honorable.
 - **This** — the object. A specific item in the catalog, not a category.
 
-So an entry is **not a review**. It is a love story of an item: the story of
+So an entry is a review — a review in the fullest sense: **"An entry is a
+love story, a historical tale, of an expert and the tools."** The story of
 one man and his trainset, not a survey of all possible train gauges. Not
 "grandma's favorite bowl" but *why* grandma loves her crockpot — the
 iron-core ceramic glaze that lets her cook her best dishes — with the
