@@ -13,7 +13,7 @@ window.PROJECTS = [
   {
     name: "iusethis.org",
     desc: "This site — a continuous-form register of projects, served as a single static page from GitHub Pages.",
-    url: "https://github.com/USERNAME/iusethis.org",
+    url: "https://github.com/iusethis/iusethis",
     since: "2026",
     status: "in use",
     lang: "HTML",

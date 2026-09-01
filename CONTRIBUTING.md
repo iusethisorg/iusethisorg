@@ -58,9 +58,12 @@ Want a YouTube channel, a stacks section, a build pipeline? Don't ask — charte
    decisions, logged in the repo.
 3. A group with no activity for 90 days is archived by anyone who notices.
 
-## Becoming a maintainer
+## Governance: titles, votes, and joining
 
-Maintainers are contributors whose merged work shows sustained care. Any
-existing maintainer may nominate one via PR to `docs/MAINTAINERS.md`; lazy
-consensus applies. Maintainership is per-area (site, write-ups, video, …)
-and lapses after 6 months of inactivity — no ceremony either way.
+Authority here is held as **titles** (Registrar, Editor, Herald, Keeper,
+Moderator, Archivist, Steward), granted for demonstrated care and recorded
+in `docs/TITLES.md`. Proposals are PRs into `docs/proposals/`; title-holders
+cast binding votes, everyone else advisory — the full machine is
+`docs/GOVERNANCE.md`, and the SOP for joining and holding titles is
+`docs/ONBOARDING.md` (start with the *Join governance* issue template).
+Titles lapse after 6 months of inactivity — no ceremony either way.

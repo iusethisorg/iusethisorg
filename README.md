@@ -26,8 +26,10 @@ Edit `projects.js` and add an object to the `PROJECTS` array:
 
 ## Deploying to GitHub Pages
 
-1. Create a GitHub repository (e.g. `iusethis.org`) and push this repo to it.
-   Update the `USERNAME` placeholder in `projects.js` to the real repo URL.
+1. Create the GitHub organization `iusethis` and repository
+   `iusethis/iusethis` (an org account, not a personal one, so governance
+   handoff never requires migrating the repo — see `docs/GOVERNANCE.md`),
+   then push this repo to it.
 2. In the repo: **Settings → Pages**, set Source to **Deploy from a branch**,
    branch `main`, folder `/ (root)`. The `CNAME` file in this repo tells Pages
    the site's custom domain is `iusethis.org`.
@@ -43,10 +45,10 @@ GitHub shows a TXT record to create, shaped like:
 
 | Type | Name                                | Value                    |
 |------|-------------------------------------|--------------------------|
-| TXT  | `_github-pages-challenge-USERNAME`  | *(code GitHub displays)* |
+| TXT  | `_github-pages-challenge-iusethis`  | *(code GitHub displays)* |
 
 Create it, wait for propagation (check with
-`dig TXT _github-pages-challenge-USERNAME.iusethis.org +short`), then click
+`dig TXT _github-pages-challenge-iusethis.iusethis.org +short`), then click
 **Verify**. This proves domain ownership and prevents takeover if the Pages
 site is ever disabled.
 
@@ -67,7 +69,7 @@ Optionally add `www`:
 
 | Type  | Name  | Value                 |
 |-------|-------|-----------------------|
-| CNAME | `www` | `USERNAME.github.io.` |
+| CNAME | `www` | `iusethis.github.io.` |
 
 ### 3. Enable HTTPS
 
