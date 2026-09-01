@@ -147,7 +147,17 @@ page load (pure CSS in the SVG, honors reduced-motion).
 **The Bearer** (`assets/bearer.svg`). The second depiction: a graduate
 figure holding the mark to their chest the way a diploma is held in the
 commencement photo — *I got it, I worked for it, I use it, it got me a
-job.* The pose is the whole editorial stance in one image: ownership,
+job.* `/s`
+
+The Bearer is posed in deliberate meta irony, and the `/s` is part of the
+mark's caption: the Reddit sarcasm tag, born as a fake closing HTML tag
+(see Know Your Meme,
+[Fake HTML Tags](https://knowyourmeme.com/memes/fake-html-tags)) — a
+fitting citation for a static-HTML archive. The joke is load-bearing: we
+know exactly how proudly professing a crockpot reads, and we mean every
+word anyway. Irony opens the door; sincerity furnishes the room.
+
+The pose is the whole editorial stance in one image: ownership,
 earned competency, the story told by the person who did the work, from
 the doubled perspective of journalist and expert. The write-up *is* the
 diploma — publishing an entry is the public certificate of an upgraded
