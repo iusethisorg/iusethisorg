@@ -122,8 +122,15 @@ palettes everywhere else — the printout *is* the ledger.)
 circled the way a © circles its C, because the "I" is what this
 organization claims. Beside it the wordmark **I. Use. This.** — I in gold
 (the expert), Use in green (the practice), This in mahogany (the object) —
-with the subtitle **THE EXPERT · THE PRACTICE · THE OBJECT** and the line
+with the subtitle **THE EXPERT · THE PRACTICE · THE OBJECT ↓** and the line
 `© iusethis.org`. The SVG carries its own dark-theme colors.
+
+**The arrow-T.** The T of *This* is drawn as a downward arrow: crossbar and
+stem descending through the baseline into an arrowhead. The mark points at
+whatever it is affixed to — that is the grammar of the logo. Which makes
+the brand meta: put it on a device, a case, a sticker on a crockpot, and
+the mark itself testifies *this is used*. The wordmark never needs a
+photograph beside it; wherever it sits, the arrow supplies the object.
 
 ## 7. SOP additions (merged into CONTRIBUTING.md if this proposal passes)
 
