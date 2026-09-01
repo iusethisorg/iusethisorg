@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 230" role="img" aria-label="I. Use. This. — the T of This drawn as a downward arrow pointing at the object — the expert, the practice, the object — iusethis.org">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="The iusethis seal: a gold coin struck with I. Use. This. stacked, the T of This a downward arrow breaking through the coin's rim — beside the wordmark I. Use. This. — the expert, the practice, the object — iusethis.org">
   <style>
     .coin-rim  { fill: #8c6d1f; }
     .coin-face { fill: #c9a227; }
-    .coin-i    { fill: #2a1d12; }
+    .coin-ink  { fill: #2a1d12; }
     .w-i    { fill: #a67c1f; }
     .w-use  { fill: #175a43; }
     .w-this { fill: #5c3a24; }
@@ -15,22 +15,33 @@
       .w-this { fill: #c08a5f; }
       .sub    { fill: #a69a80; }
     }
+    /* Load action: the arrow strikes downward into place once.
+       Marks only — running text always keeps a plain "This". */
+    @media (prefers-reduced-motion: no-preference) {
+      .strike { animation: strike 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) 0.35s backwards; }
+      @keyframes strike {
+        from { transform: translateY(-28px); opacity: 0; }
+        to   { transform: none; opacity: 1; }
+      }
+    }
   </style>
 
-  <!-- The mark: a struck gold coin bearing the I — the letter circled
-       like a copyright symbol, because the "I" is what's claimed. -->
-  <circle class="coin-rim"  cx="110" cy="112" r="86"/>
-  <circle class="coin-face" cx="110" cy="112" r="78"/>
-  <circle fill="none" stroke="#8c6d1f" stroke-width="3" stroke-dasharray="2 6" cx="110" cy="112" r="68"/>
-  <text class="coin-i" x="110" y="154" text-anchor="middle" font-size="118" font-weight="700">I</text>
+  <!-- The seal: a struck gold coin carrying all three elements —
+       I. / Use. / This. — with the arrow-T's shaft breaking through
+       the rim, so the seal points at whatever it is affixed to. -->
+  <circle class="coin-rim"  cx="110" cy="105" r="86"/>
+  <circle class="coin-face" cx="110" cy="105" r="78"/>
+  <circle fill="none" stroke="#8c6d1f" stroke-width="3" stroke-dasharray="2 6" cx="110" cy="105" r="66"/>
+  <text class="coin-ink" x="110" y="78"  text-anchor="middle" font-size="34" font-weight="700">I.</text>
+  <text class="coin-ink" x="110" y="118" text-anchor="middle" font-size="34" font-weight="700">Use.</text>
+  <!-- arrow-T of This: crossbar, stem through the rim, arrowhead outside the coin -->
+  <path class="coin-ink" d="M 68 128 H 92 V 134 H 83 V 196 H 96 L 80 218 L 64 196 H 77 V 134 H 68 Z"/>
+  <text class="coin-ink" x="98" y="152" font-size="34" font-weight="700">his.</text>
 
-  <!-- The wordmark: I. Use. This.
-       The T of "This" is a downward arrow: the mark points at the object
-       it is affixed to. Wearing the brand is itself the claim of use. -->
+  <!-- The wordmark: I. Use. This. — the T of "This" is the same downward
+       arrow: the mark points at the object it is affixed to. -->
   <text class="w-i" x="432" y="118" text-anchor="end" font-size="72" font-weight="700" letter-spacing="1"><tspan>I.</tspan><tspan class="w-use" dx="18">Use.</tspan></text>
-
-  <!-- arrow-T: crossbar + stem descending through the baseline into an arrowhead -->
-  <path class="w-this" d="M 444 68 H 492 V 80 H 474 V 126 H 486 L 468 150 L 450 126 H 462 V 80 H 444 Z"/>
+  <path class="w-this strike" d="M 444 68 H 492 V 80 H 474 V 126 H 486 L 468 150 L 450 126 H 462 V 80 H 444 Z"/>
   <text class="w-this" x="497" y="118" font-size="72" font-weight="700" letter-spacing="1">his.</text>
 
   <!-- The subtitle: the claim, broken out -->

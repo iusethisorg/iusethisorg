@@ -20,11 +20,14 @@
   <circle class="tassel" cx="164" cy="83" r="5"/>
   <!-- gown -->
   <path class="gown" d="M 34 250 L 34 170 Q 34 112 110 112 Q 186 112 186 170 L 186 250 Z"/>
-  <!-- the mark, held to the chest like a diploma: the coin as a book cover -->
+  <!-- the mark, held to the chest like a diploma: the seal as a book cover,
+       carrying all three elements — I. / Use. / This. with the arrow-T -->
   <rect class="rim"  x="58" y="140" width="104" height="84" rx="6"/>
   <rect class="face" x="64" y="146" width="92"  height="72" rx="4"/>
-  <rect fill="none" stroke="#8c6d1f" stroke-width="2.5" stroke-dasharray="2 6" x="73" y="155" width="74" height="54"/>
-  <text class="mark-i" x="110" y="200" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="700" font-size="52">I</text>
+  <text class="mark-i" x="110" y="168" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="700" font-size="17">I.</text>
+  <text class="mark-i" x="110" y="188" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="700" font-size="17">Use.</text>
+  <path class="mark-i" d="M 88 196 H 100 V 199 H 95.5 V 210 H 102 L 94 220 L 86 210 H 92.5 V 199 H 88 Z"/>
+  <text class="mark-i" x="103" y="208" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-weight="700" font-size="17">his.</text>
   <!-- hands -->
   <circle class="figure" cx="70"  cy="226" r="9"/>
   <circle class="figure" cx="150" cy="226" r="9"/>
