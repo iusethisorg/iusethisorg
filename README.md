@@ -22,17 +22,48 @@ Edit `projects.js` and add an object to the `PROJECTS` array:
 }
 ```
 
-`index.html` renders the array as numbered records. No build step.
+`index.html` renders the array as numbered records — no build step for
+records.
+
+## Writing an article (the text-blog pipeline)
+
+Articles are plain text files in `articles/` — front matter plus a tiny
+markup (paragraphs, `## sections`, `![caption](src)` figures, `>` pull
+quotes, numbered lists). The Makefile does all the important targets:
+
+```sh
+make new SLUG=my-object   # scaffold an article in the ledger format
+make build                # render writeups/*.html + articles.js (the
+                          # manifest the front-page ledger gallery reads)
+make check                # strict build — what CI runs
+make serve                # build + preview at http://localhost:8000
+make clean                # remove generated files
+```
+
+Set `status: published` (the Register front-matter fields become
+mandatory) and the article gets a page and a "published" card in the
+front-page gallery; `status: forthcoming` shows a claimable card.
+Generated files are never committed — the GitHub Action
+(`.github/workflows/pages.yml`) runs `make check` on every push to
+`main` and deploys the result to Pages.
+
+## Fork this — please
+
+The whole site is MIT (code) — forking is not just permitted, it's the
+point: take the repo, empty `articles/` and `projects.js`, and run your
+own register of use. Keep the `LICENSE` file and its copyright line and
+you're fully compliant; a link back to iusethis.org is appreciated,
+never required. Write-ups are the authors' own (CC BY-SA proposed —
+see proposal 003).
 
 ## Deploying to GitHub Pages
 
-1. Create the GitHub organization `iusethis` and repository
-   `iusethis/iusethis` (an org account, not a personal one, so governance
-   handoff never requires migrating the repo — see `docs/GOVERNANCE.md`),
-   then push this repo to it.
-2. In the repo: **Settings → Pages**, set Source to **Deploy from a branch**,
-   branch `main`, folder `/ (root)`. The `CNAME` file in this repo tells Pages
-   the site's custom domain is `iusethis.org`.
+1. The repo lives at `iusethisorg/iusethisorg` (an org account, not a
+   personal one, so governance handoff never requires migrating the repo —
+   see `docs/GOVERNANCE.md`).
+2. In the repo: **Settings → Pages**, set Source to **GitHub Actions**.
+   The workflow builds (`make check`) and deploys on each push to `main`.
+   The `CNAME` file tells Pages the custom domain is `iusethis.org`.
 
 ## DNS setup
 
@@ -69,7 +100,7 @@ Optionally add `www`:
 
 | Type  | Name  | Value                 |
 |-------|-------|-----------------------|
-| CNAME | `www` | `iusethis.github.io.` |
+| CNAME | `www` | `iusethisorg.github.io.` |
 
 ### 3. Enable HTTPS
 

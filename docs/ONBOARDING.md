@@ -24,7 +24,7 @@ do-ocracy filter: governance is held by people who do the work.)
    sought title, plus Steward assent during Phase 0. Objections must cite
    work, never vibes.
 4. **Seating.** A PR adds the new holder to `docs/TITLES.md` and the
-   matching GitHub team on `iusethis/iusethis`. Merging that PR *is* the
+   matching GitHub team on `iusethisorg/iusethisorg`. Merging that PR *is* the
    appointment — no ceremony beyond the merge commit.
 5. **First act.** The new holder picks their own first task from the
    backlog (nobody assigns it), and is introduced in the next Herald

@@ -1,7 +1,7 @@
 # iusethis Governance Charter
 
 Governance-as-files: this charter, the titles registry, and every vote
-live in the repository `iusethis/iusethis` and change only by pull
+live in the repository `iusethisorg/iusethisorg` and change only by pull
 request. If it isn't merged, it isn't governance. (Pattern: GitHub's
 Minimum Viable Governance — governance documents amended by recorded
 vote — run entirely on GitHub controls, no tokens, no chain.)
@@ -33,7 +33,7 @@ in a crisis. We write it on day one.
 | Who binds | Holders of titles in `docs/TITLES.md` cast **binding** votes; anyone else casts **advisory** votes, always welcome, always logged |
 | Tally | Written into the proposal file at close, then merged (or closed) |
 | Enforce | Branch protection + CODEOWNERS: governance paths require Steward (later: council) approval; GitHub teams mirror titles |
-| Backlog | The `iusethis/iusethis` project board tracks two queues: write-ups and governance proposals |
+| Backlog | The `iusethisorg/iusethisorg` project board tracks two queues: write-ups and governance proposals |
 
 **Vote types.**
 - *Lazy consensus* (default): 72 hours without objection merges any

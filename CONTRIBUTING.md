@@ -35,8 +35,9 @@ whole stack that hangs together.
    stack, the angle, and who might write it (yourself included).
 2. Anyone may claim it by commenting `claiming` — first claim wins; a claim
    goes stale after 30 days of no draft.
-3. Draft as a PR into `writeups/` (kebab-case filename, front matter:
-   `title`, `author`, `date`, `tools`), following the **ledger format**.
+3. Draft as a PR adding `articles/<slug>.md` (scaffold it with
+   `make new SLUG=<slug>`; `make build` renders the page and the
+   front-page gallery card), following the **ledger format**.
    An entry is a review in the iusethis sense — a love story, a historical
    tale, of an expert and the tools — with five images separating the
    sections (Meeting, Practice, Expertise, Care), a required Register data
