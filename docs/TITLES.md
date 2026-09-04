@@ -12,7 +12,7 @@ remembering — they are the recognition ledger.
 
 | Title | Holder | Delegates | Since |
 |---|---|---|---|
-| Steward | Paul Richeson (paulr@sdf.org) | — | 2026-08-31 |
+| Steward | Paul Richeson | — | 2026-08-31 |
 | Registrar | Paul Richeson | — | 2026-08-31 |
 | Editor | Paul Richeson | — | 2026-08-31 |
 | Herald | Paul Richeson | — | 2026-08-31 |

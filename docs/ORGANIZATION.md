@@ -1,6 +1,6 @@
 # How iusethis organizes itself
 
-Founded 2026 by Paul Richeson <paulr@sdf.org>. MIT-licensed, contributor-run.
+Founded 2026 by Paul Richeson. MIT-licensed, contributor-run.
 
 ## The idea
 

@@ -4,7 +4,7 @@ A register of software actually in use — a single static page styled as a
 continuous-form greenbar printout, served by GitHub Pages at
 [iusethis.org](https://iusethis.org).
 
-MIT License © 2026 Paul Richeson <paulr@sdf.org>
+MIT License © 2026 Paul Richeson
 
 ## Adding a project
 

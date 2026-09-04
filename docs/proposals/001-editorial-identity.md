@@ -1,7 +1,7 @@
 # Proposal 001 — The editorial identity: love stories of objects
 
 - **Status:** open for review (72h lazy consensus per CONTRIBUTING.md)
-- **Proposed:** 2026-08-31, from a research session for paulr@sdf.org
+- **Proposed:** 2026-08-31, from a research session for Paul Richeson
 - **Decides:** what an iusethis article *is*, the article format, the
   site-wide color system, the logo, and how we find collaborators
 
